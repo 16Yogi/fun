@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>For Ananya 🧸</title>
+<style>
+:root{--bg:#fff1f5;--card:#fff;--ink:#4a2c3a;--pink:#ff8fb1;--soft:#ffd6e3;--accent:#ffb347;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a1a24;--card:#3a2532;--ink:#ffe6ee;--soft:#5a3446;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#2a1a24;--card:#3a2532;--ink:#ffe6ee;--soft:#5a3446;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Trebuchet MS","Comic Sans MS",system-ui,sans-serif;text-align:center;overflow-x:hidden}
+.wrap{max-width:480px;margin:0 auto;padding:18px 14px 50px}
+h1{font-size:1.6rem;margin:6px 0 2px}
+.sub{opacity:.85;margin:0 0 8px}
+.stage{position:relative;display:inline-block;font-size:8rem;line-height:1.1;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;animation:float 3s ease-in-out infinite}
+.stage.go{animation:squish .5s}
+.stage.spin{animation:spin .8s}
+.hat{position:absolute;left:0;right:0;top:-.28em;font-size:.55em}
+.glass{position:absolute;left:0;right:0;top:.38em;font-size:.42em}
+@keyframes float{50%{transform:translateY(-10px) rotate(3deg)}}
+@keyframes squish{30%{transform:scale(1.25,.7)}60%{transform:scale(.85,1.18)}100%{transform:scale(1)}}
+@keyframes spin{to{transform:rotate(720deg) scale(1)}}
+.bubble{background:var(--card);border:3px solid var(--soft);border-radius:22px;padding:12px 14px;margin:10px auto;min-height:64px;display:flex;align-items:center;justify-content:center;font-size:1.05rem}
+.meter{background:var(--soft);border-radius:99px;height:20px;overflow:hidden;margin:4px 0}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--accent));transition:width .4s}
+.small{font-size:.85rem;opacity:.8}
+button{font:inherit;border:0;border-radius:99px;padding:11px 18px;margin:5px 3px;background:var(--pink);color:#fff;font-weight:bold;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.15)}
+button:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.15)}
+button.alt{background:var(--accent)}
+button.red{background:#e53b4f;font-size:1.05rem;padding:14px 22px}
+.card{background:var(--card);border-radius:22px;padding:14px;margin-top:18px;border:3px dashed var(--soft)}
+.card h2{margin:0 0 6px;font-size:1.15rem}
+#field{position:relative;height:260px;background:var(--soft);border-radius:18px;overflow:hidden;margin-top:8px;touch-action:manipulation}
+.toy{position:absolute;top:-50px;font-size:2.4rem;cursor:pointer;user-select:none;animation:drop linear forwards}
+@keyframes drop{to{transform:translateY(330px) rotate(200deg)}}
+.pop{position:absolute;font-size:1.4rem;font-weight:bold;pointer-events:none;animation:up .7s forwards;color:#e53b4f}
+@keyframes up{to{transform:translateY(-40px);opacity:0}}
+.fall{position:fixed;top:-60px;font-size:2rem;pointer-events:none;z-index:9;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(115vh) rotate(360deg)}}
+.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+.cert{border:5px double var(--pink);border-radius:14px;padding:14px;background:var(--card)}
+.cert b.n{font-size:1.5rem;color:var(--pink)}
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <h1>Hello Ananya 🌸</h1>
+  <p class="sub">Mr. Fluffy tumse milne ke liye bahut excited hai! Usse tap karo, wo squeak karega 🔊</p>
+
+  <div class="stage" id="stage"><span class="hat" id="hat"></span>🧸<span class="glass" id="glass"></span></div>
+  <div class="bubble" id="bubble">Hiii Ananya! Main Mr. Fluffy hoon 🥺 Mujhe tap karo na, main thoda ticklish hoon!</div>
+
+  <div class="small">Smile meter 😊</div>
+  <div class="meter"><i id="bar"></i></div>
+  <div id="done" class="small" style="display:none;color:var(--pink);font-weight:bold">🎉 Mission accomplished: Ananya smiled! Mr. Fluffy ko medal mil gaya 🏅</div>
+
+  <div>
+    <button id="joke">Ek cute joke 😂</button>
+    <button id="dress" class="alt">Teddy ko dress up karo 👑</button>
+  </div>
+  <div><button class="red" id="nopress">⚠️ MAT DABANA ⚠️</button></div>
+
+  <div class="card">
+    <h2>🎯 Soft Toys Pakdo!</h2>
+    <div class="small">20 second mein jitne cute toys pakad sako, pakdo!</div>
+    <div id="field"></div>
+    <div style="margin-top:6px"><b id="score">Score: 0</b> &nbsp; <b id="time"></b></div>
+    <button id="start" class="alt">Start 🚀</button>
+    <div id="result" class="small" style="margin-top:4px"></div>
+  </div>
+
+  <div class="card">
+    <h2>🔮 Teddy ki Magic Prediction</h2>
+    <div id="fortune" class="bubble" style="min-height:50px">Button dabao, Teddy tumhara future batayega ✨</div>
+    <button id="fort">Mera future? ✨</button>
+  </div>
+
+  <div class="card">
+    <div class="cert">
+      <div class="small">🏛️ MINISTRY OF SOFT TOYS · DEPARTMENT OF SMILES</div>
+      <div>Ek zaroori notice: <b>Ananya</b> ke khilaaf teen shikayatein darj hui hain 🚨</div>
+      <b class="n">📜 Cute Case #001</b>
+      <div style="text-align:left;margin:8px 0">1️⃣ Itna pyaara bolne ka jurm. Bunny gajar khana bhool gaya 🥕<br>2️⃣ Soft toys se dosti karke, humse zyada attention lene ka jurm 🧸<br>3️⃣ Apni cute hansi chhupane ka jurm (yeh sabse bada hai) 🙈</div><div><b>Saza:</b> aaj kam se kam ek baar muskurana hai 😌</div>
+      <div class="small" style="margin-top:8px">Faisla final hai. Appeal allowed nahi hai 😜<br>Signed: Mr. Fluffy, Chief Cuddle Officer 🐾 (paw stamp attached)</div>
+    </div>
+    <p style="margin:12px 0 0">P.S. Teddy ka ek chhota sa order hai: <b>thoda paani pi lo 💧 aur ek baar muskura do 🙂</b><br>Bas itna hi. Baaki sab Teddy sambhal lega 🧸💛</p>
+  </div>
+</div>
+
+<script>
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+var lines=["Aww, gudgudi ho rahi hai! Hihihi 😆","Tum bahut achi ho, Teddy ko sab pata hai 🧸","Breaking news: ek bunny gajar dekh ke khushi se naach padi 🐰🥕","Main soft hoon, par tum usse bhi zyada sweet ho 🍭","Shhh... main raat ko chupke se dance karta hoon 🕺 kisi ko mat batana!","Tum muskurati ho to meri button-aankhein chamak jaati hain ✨","Fun fact: panda ko sirf khana aur cute lagna aata hai. Bilkul tumhari tarah 🐼","Mera secret naam 'Cuddle Master 3000' hai 😎","Mushkil din hai? Koi baat nahi, Teddy yahin baitha hai tumhare liye 💛","Squeak squeak! Matlab: tum amazing ho 🐥","Aaj tum jitni cute lag rahi ho, utna toh poora toy shop bhi nahi hai 🧸"];
+var jokes=["Teddy ne diet start ki... par sirf cotton candy wali 🍬","Bear ko neend kyun nahi aati? Kyunki uska alarm 'Honey!' bolta hai 🍯","Duck ne WiFi lagaya. Password: quack123 🦆","Teddy gym gaya. Trainer bola: 'Tum toh already bahut cute ho, gym ki kya zaroorat!' 💪","Bunny late kyun hui? Raaste mein gajar ki sale lagi thi 🥕","Panda ne exam diya. Answer sheet pe sirf 'zzz' likha tha 🐼"];
+var fortunes=["Aaj tumhe koi bahut cute cheez milegi. Shayad aaina 🪞","Bahut jald tumhari smile se kisi ka poora din ban jayega 😊","Aaj kuch bahut tasty khaane ka yog hai. Teddy ne stars mein padha 🍰","Ek chhota sa bunny tumse dosti karna chahta hai 🐰","Aaj tumhare liye ek acchi si surprise aane wali hai 🎁","Tumhari hansi aaj ek teddy ki bhi udaasi door kar degi 🧸"];
+var pct=0,bubble=document.getElementById('bubble'),bar=document.getElementById('bar'),stage=document.getElementById('stage');
+function bump(n){pct=Math.min(100,pct+n);bar.style.width=pct+'%';if(pct>=100)document.getElementById('done').style.display='block'}
+function squeak(){try{var C=new(window.AudioContext||window.webkitAudioContext)(),o=C.createOscillator(),g=C.createGain();o.type='square';o.frequency.setValueAtTime(500+Math.random()*300,C.currentTime);o.frequency.exponentialRampToValueAtTime(1500,C.currentTime+.12);g.gain.setValueAtTime(.12,C.currentTime);g.gain.exponentialRampToValueAtTime(.001,C.currentTime+.18);o.connect(g);g.connect(C.destination);o.start();o.stop(C.currentTime+.2)}catch(e){}}
+function anim(c){stage.classList.remove('go','spin');void stage.offsetWidth;stage.classList.add(c)}
+function rain(list,n){for(var i=0;i<n;i++){var s=document.createElement('span');s.className='fall';s.textContent=pick(list);s.style.left=Math.random()*95+'vw';s.style.animationDuration=(2+Math.random()*2.5)+'s';s.style.animationDelay=Math.random()*.6+'s';document.body.appendChild(s);setTimeout(function(x){x.remove()},5500,s)}}
+stage.addEventListener('click',function(){squeak();anim('go');bubble.textContent=pick(lines);bump(8);if(Math.random()<.3)rain(['💖','✨'],8)});
+document.getElementById('joke').addEventListener('click',function(){squeak();bubble.textContent=pick(jokes);bump(12)});
+var hats=['👑','🎩','🎀','🤠','🎓','🧢','🪄'],gl=['','😎','🥸','🤓'];
+document.getElementById('dress').addEventListener('click',function(){squeak();document.getElementById('hat').textContent=pick(hats);document.getElementById('glass').textContent=pick(gl);bubble.textContent=pick(['Kaisa lag raha hoon? Model material na? 💅','Fashion show shuru! Ananya judge hai 👑','Main toh ab influencer ban gaya 📸']);anim('go');bump(10)});
+var np=0,npl=['Maine bola tha na, mat dabao! 😤','Phir se dabaya?! Teddy gussa hai 😡 (par cute wala gussa)','Ab toh Teddy ko chakkar aa gaye 😵','Achha achha, tum jeet gayi. Teddy ne sorry bola 🥺','Teddy ne haar maan li 🏳️ Tum champion ho 🏆'];
+document.getElementById('nopress').addEventListener('click',function(){squeak();var w=document.getElementById('wrap');w.classList.remove('shake');void w.offsetWidth;w.classList.add('shake');bubble.textContent=npl[Math.min(np,npl.length-1)];if(np%2==1)anim('spin');if(np>=3)rain(['🧸','💖','🐰','🎉'],30);np++;bump(8)});
+document.getElementById('fort').addEventListener('click',function(){squeak();document.getElementById('fortune').textContent=pick(fortunes);bump(8)});
+
+var score=0,left=0,timer=null,spawner=null,field=document.getElementById('field');
+var toys=['🧸','🐰','🐻','🐼','🦆','🐘','🐥','🦄'];
+function spawn(){var t=document.createElement('span');t.className='toy';t.textContent=pick(toys);t.style.left=(Math.random()*85)+'%';t.style.animationDuration=(1.8+Math.random()*1.5)+'s';t.addEventListener('pointerdown',function(e){e.preventDefault();if(t.dataset.hit)return;t.dataset.hit=1;score++;document.getElementById('score').textContent='Score: '+score;squeak();var p=document.createElement('span');p.className='pop';p.textContent='+1';p.style.left=t.style.left;p.style.top=(t.getBoundingClientRect().top-field.getBoundingClientRect().top)+'px';field.appendChild(p);setTimeout(function(){p.remove()},700);t.remove()});field.appendChild(t);setTimeout(function(){t.remove()},3500)}
+function end(){clearInterval(timer);clearInterval(spawner);document.getElementById('start').disabled=false;document.getElementById('time').textContent='';var r=score>=20?'Wow! '+score+' toys! Tum toh Toy Queen ho 👑':score>=10?score+' toys! Teddy ekdum impress ho gaya 🧸':score+' toys. Koi baat nahi, baaki Teddy ne chupke se utha liye 😜';document.getElementById('result').textContent=r;bump(15);rain(['🎉','🧸','✨'],14)}
+document.getElementById('start').addEventListener('click',function(){score=0;left=20;this.disabled=true;field.innerHTML='';document.getElementById('result').textContent='';document.getElementById('score').textContent='Score: 0';document.getElementById('time').textContent='⏱ 20';spawner=setInterval(spawn,550);timer=setInterval(function(){left--;document.getElementById('time').textContent='⏱ '+left;if(left<=0)end()},1000)});
+</script>
+</body>
+</html>
